@@ -1,6 +1,10 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 title Codex Uninstaller
+rem Single-file launcher.
+rem The long Base64 lines below are the embedded PowerShell uninstaller script.
+rem This keeps Korean/English UI text reliable on Windows while users download only this .bat.
+rem It decodes to %TEMP%, runs, then deletes the temporary files.
 set "TMP_PS=%TEMP%\codex-uninstaller-%RANDOM%%RANDOM%.ps1"
 set "TMP_B64=%TEMP%\codex-uninstaller-%RANDOM%%RANDOM%.b64"
 break > "%TMP_B64%"
