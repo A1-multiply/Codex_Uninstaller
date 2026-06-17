@@ -9,8 +9,8 @@ Codex_Uninstaller is a single-file Windows uninstaller for Codex. Download and r
 1. GitHub에서 `uninstall-codex.bat` 파일을 다운로드합니다.  
    Download `uninstall-codex.bat` from GitHub.
 
-2. `uninstall-codex.bat`을 더블클릭해서 실행합니다.  
-   Double-click `uninstall-codex.bat`.
+2. `uninstall-codex.bat`을 더블클릭해서 실행한 뒤 Windows 관리자 권한 요청을 승인합니다.
+   Double-click `uninstall-codex.bat`, then approve the Windows administrator prompt.
 
 3. 메뉴에서 `1`을 입력하면 Codex 삭제를 진행합니다.  
    Type `1` to remove Codex.
@@ -35,9 +35,9 @@ Codex_Uninstaller is a single-file Windows uninstaller for Codex. Download and r
 
 This tool targets only known Codex paths and exact Codex package IDs. It does not scan for or remove unrelated Windows programs.
 
-전체 사용자용으로 설치된 Codex까지 삭제하려면 `uninstall-codex.bat`을 우클릭한 뒤 `관리자 권한으로 실행`하세요.
+`uninstall-codex.bat`은 더블클릭하면 자동으로 관리자 권한을 요청합니다. 관리자 권한으로 실행되면 Windows 앱 패키지로 등록된 Codex까지 삭제합니다.
 
-To remove machine-wide Codex installs, right-click `uninstall-codex.bat` and choose `Run as administrator`.
+When double-clicked, `uninstall-codex.bat` automatically asks for administrator permission. With administrator permission, it also removes Codex registered as a Windows app package.
 
 ## 파일 / Files
 
