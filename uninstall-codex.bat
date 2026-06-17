@@ -2,9 +2,19 @@
 setlocal EnableExtensions DisableDelayedExpansion
 title Codex Uninstaller
 rem Double-click launcher. It asks Windows for administrator permission automatically.
-powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "if ((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { exit 0 } else { exit 1 }" >nul 2>nul
+set "__CODEX_UNINSTALLER_ELEVATED="
+if /i "%~1"=="--elevated" set "__CODEX_UNINSTALLER_ELEVATED=1"
+fltmc >nul 2>nul
 if errorlevel 1 (
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    if defined __CODEX_UNINSTALLER_ELEVATED (
+        echo Failed to start with administrator permission.
+        echo Please approve the Windows administrator prompt and try again.
+        echo.
+        pause
+        exit /b 1
+    )
+    set "__CODEX_UNINSTALLER_BAT=%~f0"
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "Start-Process -FilePath $env:ComSpec -ArgumentList @('/d','/c','\"' + $env:__CODEX_UNINSTALLER_BAT + '\" --elevated') -Verb RunAs -WorkingDirectory (Get-Location).Path"
     exit /b
 )
 rem Single-file launcher.
